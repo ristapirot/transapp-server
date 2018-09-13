@@ -9,5 +9,6 @@ module.exports = mongoose.model('User', new Schema({
     skypeName: String,
     email: String,
     password: String,
+    favoriteCountries: Array,
     admin: Boolean
 }));

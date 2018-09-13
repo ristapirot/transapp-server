@@ -33,6 +33,7 @@ app.post('/register', function(req, res) {
         skypeName: '',
         fullName: '',
         company: '',
+        favoriteCountries: [],
         admin: false
     });
 
