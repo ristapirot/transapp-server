@@ -8,6 +8,7 @@ var config = require('./config');
 var User = require('./app/models/user');
 var Post = require('./app/models/post');
 var cors = require('cors');
+var nodemailer = require('nodemailer');
 
 var port = process.env.PORT || 3000;
 mongoose.connect(config.database);
@@ -54,9 +55,32 @@ app.post('/register', function(req, res) {
             })
         }
     })
+});
 
-    
-})
+app.post('/sendmail', function(req, res) {
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'rista.pirot@gmail.com',
+            pass: 'tataimama'
+        }
+    });
+
+    var mailOptions = {
+        from: 'rista.pirot@gmail.com',
+        to: 'neca.rista@gmail.com',
+        subject: 'New interesting fleet!',
+        text: 'New mail'
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+    })
+      
+});
 
 app.get('/home', function(req, res) {
     res.json({
