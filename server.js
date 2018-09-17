@@ -167,6 +167,7 @@ apiRoutes.post('/sendmail', function(req, res) {
           console.log(error);
         } else {
           console.log('Email sent: ' + info.response);
+          alert('email sent')
         }
     })
 });
