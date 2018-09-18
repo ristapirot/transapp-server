@@ -162,8 +162,8 @@ apiRoutes.post('/sendmail', function(req, res) {
     var mailOptions = {
         from: 'rista.pirot@gmail.com',
         to: req.body.email,
-        subject: 'Interesting fleet from ' + req.body.userName,
-        text: req.body.newFleet.loadingCountry + ', ' + req.body.newFleet.loadingCity + ' - ' + req.body.newFleet.unloadingCountry + ', ' + req.body.newFleet.unloadingCity
+        subject: req.body.userName + ' just added new fleet: ' + req.body.newFleet.loadingCountry + ', ' + req.body.newFleet.loadingCity + ' - ' + req.body.newFleet.unloadingCountry + ', ' + req.body.newFleet.unloadingCity,
+        text: 'Check new fleet on TransApp ' + req.body.newFleet.loadingCountry + ', ' + req.body.newFleet.loadingCity + ' - ' + req.body.newFleet.unloadingCountry + ', ' + req.body.newFleet.unloadingCity
     };
 
     transporter.sendMail(mailOptions, function(error, info){
