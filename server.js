@@ -161,7 +161,7 @@ apiRoutes.post('/sendmail', function(req, res) {
 
     var mailOptions = {
         from: 'rista.pirot@gmail.com',
-        to: 'neca.rista@gmail.com',
+        to: req.body.email,
         subject: 'New interesting fleet!',
         text: 'New mail'
     };
