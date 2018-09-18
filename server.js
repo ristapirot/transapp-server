@@ -162,8 +162,8 @@ apiRoutes.post('/sendmail', function(req, res) {
     var mailOptions = {
         from: 'rista.pirot@gmail.com',
         to: req.body.email,
-        subject: 'New interesting fleet!',
-        text: 'New mail'
+        subject: 'Interesting fleet from ' + req.body.userName,
+        text: newFleet.loadingCountry + ', ' + newFleet.loadingCity + ' - ' + newFleet.unloadingCountry + ', ' + newFleet.unloadingCity
     };
 
     transporter.sendMail(mailOptions, function(error, info){
