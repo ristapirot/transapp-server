@@ -163,7 +163,7 @@ apiRoutes.post('/sendmail', function(req, res) {
         from: 'rista.pirot@gmail.com',
         to: req.body.email,
         subject: 'Interesting fleet from ' + req.body.userName,
-        text: newFleet.loadingCountry + ', ' + newFleet.loadingCity + ' - ' + newFleet.unloadingCountry + ', ' + newFleet.unloadingCity
+        text: req.body.newFleet.loadingCountry + ', ' + req.body.newFleet.loadingCity + ' - ' + req.body.newFleet.unloadingCountry + ', ' + req.body.newFleet.unloadingCity
     };
 
     transporter.sendMail(mailOptions, function(error, info){
