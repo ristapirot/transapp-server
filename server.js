@@ -57,31 +57,6 @@ app.post('/register', function(req, res) {
     })
 });
 
-app.post('/sendmail', function(req, res) {
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'rista.pirot@gmail.com',
-            pass: 'tataimama'
-        }
-    });
-
-    var mailOptions = {
-        from: 'rista.pirot@gmail.com',
-        to: 'neca.rista@gmail.com',
-        subject: 'New interesting fleet!',
-        text: 'New mail'
-    };
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-    })
-      
-})
-
 app.get('/home', function(req, res) {
     res.json({
         message: 'This is home page.'
@@ -121,6 +96,31 @@ apiRoutes.post('/authenticate', function(req, res) {
             }
         }
     });
+});
+
+apiRoutes.post('/sendmail', function(req, res) {
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'rista.pirot@gmail.com',
+            pass: 'tataimama'
+        }
+    });
+
+    var mailOptions = {
+        from: 'rista.pirot@gmail.com',
+        to: req.body.email,
+        subject: 'New interesting fleet!',
+        text: 'New mail'
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+          alert('email sent')
+        }
+    })
 });
 
 apiRoutes.get('/posts', function(req, res) {
@@ -170,7 +170,7 @@ apiRoutes.use(function(req, res, next) {
             message: 'No token provided.'
         });
     }
-}); 
+});
 
 apiRoutes.get('/', function(req, res) {
     res.json({ message: 'Welcome to the coolest API on Earth!' });
