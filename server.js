@@ -153,6 +153,9 @@ apiRoutes.post('/sendmail', function(req, res) {
         auth: {
             user: 'rista.pirot@gmail.com',
             pass: 'tataimama'
+        },
+        tls: {
+            rejectUnauthorized: false
         }
     });
 
