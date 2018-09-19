@@ -127,6 +127,12 @@ apiRoutes.get('/profile/:idUser', function(req, res) {
     }
 });
 
+apiRoutes.get('/users', function(req, res) {
+    User.find({}, function(err, users) {
+        res.json(users);
+    });
+});
+
 apiRoutes.use(function(req, res, next) {
     var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
@@ -179,11 +185,7 @@ apiRoutes.get('/', function(req, res) {
     res.json({ message: 'Welcome to the coolest API on Earth!' });
 });
 
-apiRoutes.get('/users', function(req, res) {
-    User.find({}, function(err, users) {
-        res.json(users);
-    });
-});
+
 
 apiRoutes.get('/user/:id', function(req, res) {
     var id = req.params.id
